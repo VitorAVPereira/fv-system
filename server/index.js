@@ -1,19 +1,15 @@
-const express = require('express');
-const cors = require('cors');
-const sequelize = require('./config/database');
-
+import express, { json } from 'express';
+import cors from 'cors';
+import sequelize from './src/config/database.js';
+import servicesRoute from './src/routes/services.js'
 const app = express();
 
-// Configurações
 app.use(cors());
-app.use(express.json());
+app.use(json());
+app.use('/services', servicesRoute);
 
-// Rotas principais
-app.use('/operacoes', require('./routes/operacoes'));
-
-// Sincronizar banco de dados
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync().then(() => {
   app.listen(3000, () => {
-    console.log('Servidor rodando na porta 3000');
+    console.log('DB and Server status OK, port:3000 ');
   });
 });
