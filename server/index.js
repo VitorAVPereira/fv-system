@@ -12,4 +12,4 @@ sequelize.sync().then(() => {
   app.listen(3000, () => {
     console.log('DB and Server status OK, port:3000 ');
   });
-});
+}).catch((error) => console.error("Erro na sincronização:", error));

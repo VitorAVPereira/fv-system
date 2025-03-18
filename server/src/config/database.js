@@ -2,7 +2,7 @@ import { Sequelize } from 'sequelize';
 
 const sequelize = new Sequelize("db-system", "root", "password", {
   dialect: 'sqlite',
-  host: './dev.sqlite',
+  storage: './dev.sqlite',
   logging: false
 });
 
